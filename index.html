@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScanThemall</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    :root {
+        --bg-color: #f0f4f8;
+        --card-bg: #ffffff;
+        --text-dark: #0f172a;
+        --text-body: #475569;
+        --accent-primary: #0284c7; /* Clinical Blue */
+        --accent-secondary: #0ea5e9;
+        --accent-light: #e0f2fe;
+        --border-color: #e2e8f0;
+        --success: #10b981;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 40px 20px;
+        font-family: 'Inter', sans-serif;
+        background: var(--bg-color);
+        color: var(--text-body);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+    }
+
+    .card {
+        max-width: 900px;
+        width: 100%;
+        background: var(--card-bg);
+        border: 1px solid #ffffff;
+        padding: 55px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.08), 0 0 15px rgba(255, 255, 255, 0.5) inset;
+        animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Top decorative band */
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: linear-gradient(90deg, var(--accent-primary), #38bdf8, var(--success));
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header {
+        text-align: left;
+        margin-bottom: 35px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .badge {
+        display: inline-block;
+        background: var(--accent-light);
+        color: var(--accent-primary);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 20px;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    h1 {
+        margin: 0 0 10px 0;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--text-dark);
+        letter-spacing: -0.5px;
+    }
+
+    .sub {
+        font-size: 15px;
+        color: #64748b;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .sub i {
+        color: var(--accent-secondary);
+    }
+
+    .intro-text {
+        font-size: 16.5px;
+        color: var(--text-dark);
+        line-height: 1.8;
+        margin-bottom: 40px;
+        padding: 22px 25px;
+        background: #f8fafc;
+        border-left: 4px solid var(--accent-primary);
+        border-radius: 0 12px 12px 0;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 35px;
+    }
+
+    .section {
+        background: #ffffff;
+    }
+
+    .section-title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-title i {
+        color: var(--accent-primary);
+        background: var(--accent-light);
+        padding: 8px;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    .checklist-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px 25px;
+    }
+
+    @media (max-width: 768px) {
+        .checklist-grid {
+            grid-template-columns: 1fr;
+        }
+        .card {
+            padding: 30px 25px;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        .workflow-steps {
+            flex-direction: column;
+            gap: 15px;
+        }
+        .footer {
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start !important;
+        }
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        font-size: 15px;
+        color: var(--text-body);
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        line-height: 1.6;
+        padding: 8px 0;
+        border-bottom: 1px dashed var(--border-color);
+    }
+    
+    li:last-child {
+        border-bottom: none;
+    }
+
+    li i {
+        color: var(--success);
+        margin-top: 4px;
+        font-size: 14px;
+    }
+
+    .workflow-steps {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .step {
+        flex: 1;
+        background: #f8fafc;
+        border: 1px solid var(--border-color);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .step:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    }
+
+    .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: var(--accent-primary);
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .step-title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    .step-desc {
+        font-size: 13.5px;
+        color: var(--text-body);
+        line-height: 1.5;
+    }
+
+    .cta-box {
+        background: linear-gradient(135deg, var(--accent-primary), #1d4ed8);
+        padding: 25px 30px;
+        border-radius: 16px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        margin-top: 40px;
+        box-shadow: 0 15px 30px -10px rgba(2, 132, 199, 0.4);
+    }
+
+    .cta-box i {
+        font-size: 34px;
+        color: #93c5fd;
+        flex-shrink: 0;
+    }
+    
+    .cta-content {
+        flex: 1;
+    }
+    
+    .cta-title {
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 5px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .cta-text {
+        font-size: 15px;
+        opacity: 0.9;
+        line-height: 1.5;
+    }
+
+    .footer {
+        margin-top: 35px;
+        font-size: 14px;
+        color: #64748b;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+        border-top: 1px solid var(--border-color);
+        padding-top: 20px;
+    }
+    
+    .timeline {
+        display: inline-flex;
+        align-items: center;
+        background: #f8fafc;
+        color: var(--text-dark);
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid var(--border-color);
+    }
+    .timeline i {
+        color: var(--accent-primary);
+        margin-right: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <div class="badge">Hi. kevin</div>
+        <h1>sohel0130844@gmail.com</h1>
+        <div class="sub">
+            <!-- <span><i class="fas fa-microchip"></i> AI-Powered Spirometer</span> -->
+            <!-- <span><i class="fas fa-code"></i> Python to C/C++ Firmware</span> -->
+        </div>
+    </div>
+        <h1 class="intro-text">Hi. I am Sohel.</p>No need to scroll down</h1>
+    <div class="intro-text">
+        I have thoroughly reviewed the requirements for the Spira AI-powered handheld spirometer. With my expertise in embedded systems and medical tech prototypes, I will seamlessly translate your Python/Cursor code into robust, flash-ready firmware for the ESP32-S3 / STM32 architecture, ensuring all sensor processing, cloud AI integrations, and BLE communications are production-ready.
+    </div>
+
+    <div class="grid-container">
+        <div class="section">
+            <div class="section-title"><i class="fas fa-list-check"></i> Scope of Work</div>
+            <div class="checklist-grid">
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Clean, debug, and professionalize the existing Python/Cursor codebase</li>
+                    <li><i class="fas fa-check-circle"></i> Validate Bernoulli conversions (differential pressure to L/s flow)</li>
+                    <li><i class="fas fa-check-circle"></i> Rigorously test FEV1, FVC, and Peak Expiratory Flow integral logic</li>
+                    <li><i class="fas fa-check-circle"></i> Ensure AI model risk scoring (0–100) works flawlessly</li>
+                </ul>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Securely hardcode API keys & GCP/AWS cloud endpoints</li>
+                    <li><i class="fas fa-check-circle"></i> Verify 30×12mm OLED (SSD1306 I2C) screen outputs</li>
+                    <li><i class="fas fa-check-circle"></i> Test BLE transmissions to the web/mobile dashboard</li>
+                    <li><i class="fas fa-check-circle"></i> Adapt and compile for seamless ESP32-S3 or STM32 deployment</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" style="margin-top: 15px;">
+            <div class="section-title"><i class="fas fa-layer-group"></i> Implementation Plan</div>
+            <div class="workflow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Audit & Fix</div>
+                    <div class="step-desc">Deep audit of the codebase to fix bugs and logical errors in the sensor data pipeline.</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Hardware Prep</div>
+                    <div class="step-desc">Adapt code for microcontroller, ensuring OLED and BLE interfaces function perfectly.</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Delivery</div>
+                    <div class="step-desc">Provide clean, documented, flash-ready firmware for the engineering team.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <i class="fas fa-file-signature"></i>
+        <div class="cta-content">
+            <div class="cta-title">Ready to Start</div>
+            <div class="cta-text">
+                Prepared to sign an NDA, review the codebase, and finalize the Spira firmware so your hardware team can build the prototype without delay.
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div><i class="fas fa-shield-check" style="color: var(--success); margin-right: 5px;"></i> Quality Assurance & Security Focused</div>
+        <div class="timeline">
+            <i class="fas fa-calendar-alt"></i> ~1-2 Weeks Delivery
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
